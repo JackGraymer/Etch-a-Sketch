@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etch-a-Sketch</title>
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/1250/1250925.png">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+<div class="title">Title of Page</div>
+<div class="main">
+    <div class="side">Side
+        <input class="color btn" type="color" value="#000000">
+        <button id="gridBtn" class="btn">Grid Lines</button>
+        <button class="btn">Rainbow</button>
+        <button class="btn">Shadow</button>
+        <input autocomplete="off" type="range" min="16" value="16" max="64" class="slider">
+        <output id="sliderValue"></output>
+        <h3 class="sliderValue">Grid: 16</h3>
+    </div>
+    
+    <div class="center" draggable="false">Center
+        <div class="sketch" draggable="false"></div>
+    </div>
+</div>
+</body>
+</html>
