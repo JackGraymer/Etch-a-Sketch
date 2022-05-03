@@ -104,6 +104,32 @@ function gridDecision() {
 
 function toggleGrid2(){  
     gridBtn.classList.toggle('active');
-    toggleGrid();
-    
+    toggleGrid();   
 }
+
+//Rainbow color for paint, each cell has a random color
+function rainbowColor(){
+    let red = Math.floor(Math.random() * 255)
+    let green = Math.floor(Math.random() * 255)
+    let blue = Math.floor(Math.random() * 255)
+    let RGB = "rgb"+"(" + red + "," + green + "," +  blue +")";
+    color = RGB
+    console.log(RGB)
+    return RGB;
+}
+document.querySelector("#rainbow").addEventListener("click", function() {
+    document.querySelector("#rainbow").classList.toggle("active");
+    //checkRaimbow();
+    let cells = document.querySelectorAll('.cell');
+    if(document.querySelector("#rainbow").classList.contains("active")){
+        cells.forEach(cell => {
+            cell.addEventListener('mouseleave', rainbowColor)})
+    console.log(document.querySelector("#rainbow").classList.value)
+        }else{cells.forEach(cell => {
+            cell.removeEventListener('mouseleave', rainbowColor)})
+            color = document.querySelector('.color').value}
+
+});
+
+//Shader button, adds grey scale till black
+
