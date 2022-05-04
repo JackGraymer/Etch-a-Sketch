@@ -8,4 +8,5 @@ Etch-a-Sketch game
 - Color picker available
 - Toogle grid lines on canvas
 - Rainbow (color randomizer) button added
+- Clear Button added, erases the sketch (white background)
 

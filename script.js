@@ -37,7 +37,7 @@ function resizeCell(){//Uses the slider value to size the grid in X*Y cells
     cell.style.gridTemplateColumns = 'repeat(' + sliderValue.value + ', 1fr)';
     cell.style.gridTemplateRows = 'repeat(' + sliderValue.value + ', 1fr)';
 }
-
+let cells = document.querySelectorAll('.cell');
 /* function paint(){ 
     var cells = document.querySelectorAll('.cell');
     cells.forEach(cell => cell.addEventListener('mousedown', changeColor));
@@ -168,3 +168,11 @@ function shader(){
         })
     })}else{cell.removeEventListener('mouseleave', rainbowColor)}
 }
+//Clear button changes all cells background to rgb(250, 250, 250) white.
+var clear = document.querySelector('.clear')
+clear.addEventListener('click', function (){
+    cells = document.querySelectorAll('.cell')
+    cells.forEach(cell => {
+        cell.style.backgroundColor = 'rgb(250, 250, 250)'})
+        console.log('erased')
+})
