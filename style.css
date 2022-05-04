@@ -1,6 +1,7 @@
 body{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    padding: 0 10%;
+    padding: 5em 10%;
+    margin: 0 auto;
     max-width: 1000px;
     align-items: center;
     justify-content: center;
@@ -21,6 +22,7 @@ background-color: rgb(226, 200, 150);
 display: flex;
 padding: 1% 10; 
 height:max-content;
+min-height: 600px;
 
 }
 
@@ -42,6 +44,7 @@ height: auto;
 padding: 10%;
 margin: 5%;
 border-radius: 10px;
+transition: 0.5s;
 }
 
 .active{
@@ -53,7 +56,7 @@ transition: 0.5s;
     box-sizing: border-box;
     height: 10%;
     display: flex;
-    padding: 5%;   
+    padding: 2% 5%;   
 }
 
 .slider{
@@ -77,6 +80,11 @@ height: auto;
 }
 
 .sketch{
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 background-color: rgb(66, 66, 66);
 display: grid;
 width: 500px;
@@ -88,7 +96,7 @@ flex-shrink: 1;
 
 .cell{
 display: flex;
-background-color: aliceblue;
+background-color: rgb(250, 250, 250);
 min-width: 1px;
 min-height: 1px;
 width: auto;
@@ -97,7 +105,7 @@ height: auto;
 
 .cell2{
     display: flex;
-    background-color: aliceblue;
+    background-color: rgb(250, 250, 250);
     margin:0.5px;
     min-width: 1px;
     min-height: 1px;

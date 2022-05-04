@@ -11,6 +11,7 @@ function sliderChange(){
     resizeCell();
     paint();
     gridDecision();
+    checkRaimbow();
 }
 
 
@@ -58,8 +59,8 @@ function updateColor(){
 }
 updateColor();
 
-
-function paint(){ //Paints the cells on click and with click and drag
+//Paints the cells on click and with click and drag
+function paint(){ 
     var cells = document.querySelectorAll('.cell');
     cells.forEach(cell => cell.addEventListener('mouseover', function (event){
         
@@ -114,22 +115,56 @@ function rainbowColor(){
     let blue = Math.floor(Math.random() * 255)
     let RGB = "rgb"+"(" + red + "," + green + "," +  blue +")";
     color = RGB
-    console.log(RGB)
+    //console.log(RGB)
     return RGB;
 }
-document.querySelector("#rainbow").addEventListener("click", function() {
-    document.querySelector("#rainbow").classList.toggle("active");
-    //checkRaimbow();
+let rainbow = document.querySelector("#rainbow");
+rainbow.addEventListener("click", function() {
+    rainbow.classList.toggle("active");
+    checkRaimbow();
+    
+});
+
+function checkRaimbow(){
     let cells = document.querySelectorAll('.cell');
     if(document.querySelector("#rainbow").classList.contains("active")){
         cells.forEach(cell => {
             cell.addEventListener('mouseleave', rainbowColor)})
-    console.log(document.querySelector("#rainbow").classList.value)
-        }else{cells.forEach(cell => {
+            if (shadow.classList.contains('active')){
+                shadow.classList.remove('active');
+            }
+        }else if (rainbow.classList.contains('active') == false) {cells.forEach(cell => {
             cell.removeEventListener('mouseleave', rainbowColor)})
             color = document.querySelector('.color').value}
+    
+    }
 
-});
+//Shader button event on click, class change and deactivate Rainbow
+let shadow = document.querySelector("#shadow");
+shadow.addEventListener('click', function(){
+    shadow.classList.toggle('active');
+    if(rainbow.classList.contains('active')){
+        rainbow.classList.remove('active');
+        checkRaimbow()
+    }
+    if(shadow.classList.contains('active')){
+        console.log('shader here');
+        shader();
+    }else{color = document.querySelector('.color').value}
+})
+//Shader darkening cell colour
+function shader(){
+    if(shadow.classList.contains('active')){
+    document.querySelectorAll('.cell').forEach(cell => {
+        cell.addEventListener('click', function(){
+            color = this.style.backgroundColor;
+            color2 = color.slice(4,-1);
+            color3 = color2.split(',');
 
-//Shader button, adds grey scale till black
+            //console.log(this.style.backgroundColor);
+            console.log(color)
+            
 
+        })
+    })}else{cell.removeEventListener('mouseleave', rainbowColor)}
+}

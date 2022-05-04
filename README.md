@@ -6,4 +6,6 @@ Etch-a-Sketch game
 - On grid size input, clean canvas and resize
 - Paint the canvas on single click and drag
 - Color picker available
-- 
+- Toogle grid lines on canvas
+- Rainbow (color randomizer) button added
+
