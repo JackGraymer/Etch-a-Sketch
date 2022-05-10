@@ -2,6 +2,7 @@ let sliderValue = document.querySelector(".slider");
 console.log(sliderValue.value)
 createCell();
 paint();
+
 //Updates the slider value with the mouse click and drag, cleans the sketch, resizes grid and fills it with cells.
 sliderValue.addEventListener('mouseup', sliderChange);
 function sliderChange(){
@@ -28,8 +29,9 @@ function createCell(){//Creates cells using the slider value: slider X*Y = grid 
         container.appendChild(cell);
         //cell.textContent=i;
         cell.setAttribute('class', 'cell')
+        cell.style.backgroundColor = 'rgb(250, 250, 250'
     }
-    
+        
 }
 
 function resizeCell(){//Uses the slider value to size the grid in X*Y cells
@@ -156,23 +158,29 @@ shadow.addEventListener('click', function(){
 function shader(){
     if(shadow.classList.contains('active')){
     document.querySelectorAll('.cell').forEach(cell => {
-        cell.addEventListener('click', function(){
-            color = this.style.backgroundColor;
-            color2 = color.slice(4,-1);
+        cell.addEventListener('mouseleave', function(){
+            color1 = cell.style.backgroundColor;
+            color2 = color1.slice(4,-1);
             color3 = color2.split(',');
-
-            //console.log(this.style.backgroundColor);
-            console.log(color)
+            color4 = [Number(color3[0]), Number(color3[1]), Number(color3[2])]
+            colorDarker = [color4[0] - 20, color4[1] - 20, color4[2] - 20,];
+            color5 = colorDarker.toString();
+            color = 'rgb(' + color5 + ')'
+            console.log(this.style.backgroundColor);
+            //console.log(color)
             
-
         })
-    })}else{cell.removeEventListener('mouseleave', rainbowColor)}
+    })}else{color = querySelector('.color').value;
+console.log(color)}
 }
+
 //Clear button changes all cells background to rgb(250, 250, 250) white.
 var clear = document.querySelector('.clear')
-clear.addEventListener('click', function (){
-    cells = document.querySelectorAll('.cell')
+clear.addEventListener('click', clearSketch)
+
+function clearSketch(){    
+cells = document.querySelectorAll('.cell')
     cells.forEach(cell => {
         cell.style.backgroundColor = 'rgb(250, 250, 250)'})
         console.log('erased')
-})
+}
