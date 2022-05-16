@@ -60,27 +60,21 @@ function updateColor(){
     
 }
 updateColor();
-
 //Paints the cells on click and with click and drag
 function paint(){ 
-    var cells = document.querySelectorAll('.cell');
-    cells.forEach(cell => cell.addEventListener('mouseover', function (event){
-        
-        if(event.buttons == 1){
-            console.log('button is', event.buttons)
-            this.style.backgroundColor = color;
-        }
-    }))
-
-    var cells = document.querySelectorAll('.cell');
-    cells.forEach(cell => cell.addEventListener('mousedown', function (event){
-        
-        
-            this.style.backgroundColor = color;
-        }
-    ))
+  let shadow = document.querySelector('#shadow')
+  let cells = document.querySelectorAll('.cell');
+        cells.forEach(cell => cell.addEventListener('mouseover', (e)=>{
+          if(event.buttons == 1 && !shadow.classList.contains('active')){
+            cell.style.backgroundColor = color;
+          }
+        }))                
+        cells.forEach(cell => cell.addEventListener('mousedown', (e)=>{
+          if(!shadow.classList.contains('active')){
+            cell.style.backgroundColor = color;
+          }}  
+        )) 
 }
-
 //Toggle grid lines of the sketch On and Off, changing cell margin to 0.
 document.querySelector('#gridBtn').addEventListener('click', toggleGrid2)
 function toggleGrid(){
@@ -107,7 +101,8 @@ function gridDecision() {
 
 function toggleGrid2(){  
     gridBtn.classList.toggle('active');
-    toggleGrid();   
+    toggleGrid(); 
+  //insane
 }
 
 //Rainbow color for paint, each cell has a random color
@@ -124,7 +119,6 @@ let rainbow = document.querySelector("#rainbow");
 rainbow.addEventListener("click", function() {
     rainbow.classList.toggle("active");
     checkRaimbow();
-    
 });
 
 function checkRaimbow(){
@@ -145,6 +139,7 @@ function checkRaimbow(){
 let shadow = document.querySelector("#shadow");
 shadow.addEventListener('click', function(){
     shadow.classList.toggle('active');
+    paint();
     if(rainbow.classList.contains('active')){
         rainbow.classList.remove('active');
         checkRaimbow()
@@ -156,22 +151,29 @@ shadow.addEventListener('click', function(){
 })
 //Shader darkening cell colour
 function shader(){
-    if(shadow.classList.contains('active')){
+    if(shadow.classList.contains('active') == true){
     document.querySelectorAll('.cell').forEach(cell => {
-        cell.addEventListener('mouseleave', function(){
+        cell.addEventListener('mouseenter', obscure)
+            function obscure(){ 
             color1 = cell.style.backgroundColor;
             color2 = color1.slice(4,-1);
             color3 = color2.split(',');
             color4 = [Number(color3[0]), Number(color3[1]), Number(color3[2])]
             colorDarker = [color4[0] - 20, color4[1] - 20, color4[2] - 20,];
             color5 = colorDarker.toString();
-            color = 'rgb(' + color5 + ')'
-            console.log(this.style.backgroundColor);
-            //console.log(color)
             
-        })
-    })}else{color = querySelector('.color').value;
-console.log(color)}
+            if (event.buttons == 1){
+              color = 'rgb(' + color5 + ')'
+              this.style.backgroundColor = color;
+            }
+            
+            
+        }
+        cell.addEventListener('mousedown', obscure)
+    })}else{
+        color = querySelector('.color').value;
+        console.log(color)
+        }
 }
 
 //Clear button changes all cells background to rgb(250, 250, 250) white.
